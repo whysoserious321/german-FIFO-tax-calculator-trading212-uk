@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Trading212 Data (sensitive)
+*.csv
+Trading212_Export*.csv
+transaction_history.csv
+
+# Output files
+*.txt
+output/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
