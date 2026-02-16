@@ -32,7 +32,7 @@ This script helps German taxpayers calculate capital gains from Trading212 ETF a
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/trading212-fifo-tax-calculator.git
+git clone https://github.com/whysoserious321/german-FIFO-tax-calculator-trading212-uk.git
 cd trading212-fifo-tax-calculator
 ```
 
@@ -47,7 +47,8 @@ cd trading212-fifo-tax-calculator
 3. Click **Export** button (top right)
 4. Select date range: **From account opening** to **End of tax year**
 5. Format: CSV
-6. Save the file (e.g., `Trading212_Export.csv`)
+6. Save the file (e.g., `Trading212_Export.csv`) 
+7. Alternatively, you can open each CSV file and then combine them inside an excel worksheet and save it as a new CSV file
 
 ## 🎮 Usage
 
@@ -56,7 +57,7 @@ cd trading212-fifo-tax-calculator
 Run the script and follow the prompts:
 
 ```bash
-python3 trading212_fifo_calculator_FIXED.py
+python3 main.py
 ```
 
 The script will ask for:
@@ -237,11 +238,6 @@ You use this tool at your own risk.
 - Inspired by the need for accurate German FIFO tax calculations
 - Thanks to the Trading212 and German expat communities for feedback
 - Built with ❤️ for fellow German taxpayers dealing with foreign brokers
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/trading212-fifo-tax-calculator/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/trading212-fifo-tax-calculator/discussions)
 
 ## 🔗 Related Resources
 
