@@ -7,6 +7,7 @@ This script implements the mandatory German FIFO (First In, First Out) method
 for calculating capital gains tax on securities sales.
 
 Lines calculated:
+- Line 49: Anzahl der veräußerten Anteile (Total shares sold)
 - Line 50: Veräußerungspreis (Gross sales proceeds)
 - Line 51: Anschaffungskosten (Acquisition costs via FIFO)
 - Line 52: Veräußerungskosten (Sales costs/fees)
@@ -173,6 +174,7 @@ def calculate_fifo_for_security(transactions):
     
     if not sells:
         return {
+            'line_49': Decimal('0'),
             'line_50': Decimal('0'),
             'line_51': Decimal('0'),
             'line_52': Decimal('0'),
@@ -186,6 +188,7 @@ def calculate_fifo_for_security(transactions):
     buy_lots = [BuyLot(buy) for buy in buys]
     
     # Accumulators for Anlage KAP INV lines
+    total_line_49 = Decimal('0')  # Anzahl der veräußerten Anteile
     total_line_50 = Decimal('0')  # Veräußerungspreis
     total_line_51 = Decimal('0')  # Anschaffungskosten
     total_line_52 = Decimal('0')  # Veräußerungskosten
@@ -233,6 +236,7 @@ def calculate_fifo_for_security(transactions):
             )
         
         # Add to totals
+        total_line_49 += sell.shares
         total_line_50 += sell.gross_proceeds
         total_line_51 += acquisition_cost_for_this_sale
         total_line_52 += sell.sales_costs
@@ -255,6 +259,7 @@ def calculate_fifo_for_security(transactions):
     total_line_54 = total_line_50 - total_line_51 - total_line_52  # - line_53 (user adds manually)
     
     return {
+        'line_49': total_line_49,
         'line_50': total_line_50,
         'line_51': total_line_51,
         'line_52': total_line_52,
@@ -287,6 +292,9 @@ def print_results(isin, security_name, ticker, result):
     print("█" + " " * 83 + "█")
     print("█" * 85)
     
+    print(f"\nZeile 49 - Anzahl veräußerter Anteile: {result['line_49']:>10.8f}")
+    print(f"            (Total shares sold)")
+
     print(f"\nZeile 50 - Veräußerungspreis:    {format_currency(result['line_50'])}")
     print(f"            (Gross sales proceeds)")
     
